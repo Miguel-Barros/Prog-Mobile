@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
   },
   btn: {
     margin: 5,
-    borderColor: '#c1c1c1',
-    borderWidth: 2,
+    borderColor: '#00009c',
+    borderWidth: 1,
     borderRadius: 30,
-    fontSize: 18,
+    fontSize: 20,
     textAlign: 'center',
     width: '100%',
     display: 'flex'
@@ -44,11 +44,28 @@ export default function App() {
   const [valor2, setValor2] = useState();
   const [result, setResult] = useState();
 
-  function somar(){
-    setResult(parseFloat(valor1) + parseFloat(valor2))
+  function somar() {
+    if ((valor1) && (valor2)) {
+      setResult(parseFloat(valor1) + parseFloat(valor2))
+    }
+  }
+  function subtrair() {
+    if ((valor1) && (valor2)) {
+      setResult(parseFloat(valor1) - parseFloat(valor2))
+    }
+  }
+  function dividir() {
+    if ((valor1) && (valor2)) {
+      setResult(parseFloat(valor1) / parseFloat(valor2))
+    }
+  }
+  function multiplicar() {
+    if ((valor1) && (valor2)) {
+      setResult(parseFloat(valor1) * parseFloat(valor2))
+    }
   }
 
-  function reset(){
+  function reset() {
     setResult(null);
   }
 
@@ -58,12 +75,15 @@ export default function App() {
       <StatusBar style="auto" />
       <View style={styles.bloco}>
         <Text>Valor 1:</Text>
-        <TextInput style={styles.input} value={valor1} keyboardType='numeric' placeholder={'Primeiro valor'} onChangeText={(texto)=>setValor1(texto) } />
+        <TextInput style={styles.input} value={valor1} keyboardType='numeric' placeholder={'Primeiro valor'} onChangeText={(texto) => setValor1(texto)} />
         <Text>Valor 2:</Text>
-        <TextInput style={styles.input} value={valor2} keyboardType='numeric' placeholder={'Segundo valor'} onChangeText={(texto)=>setValor2(texto) } />
-        <TouchableOpacity style={styles.btn} onPress={somar}><Text>Calcular</Text></TouchableOpacity> 
-        <TouchableOpacity style={styles.btn} onPress={reset}><Text>Reiniciar</Text></TouchableOpacity>
+        <TextInput style={styles.input} value={valor2} keyboardType='numeric' placeholder={'Segundo valor'} onChangeText={(texto) => setValor2(texto)} />
+        <TouchableOpacity style={styles.btn} onPress={somar}><Text>Somar</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.btn} onPress={subtrair}><Text>Subtrair</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.btn} onPress={multiplicar}><Text>Multiplicar</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.btn} onPress={dividir}><Text>Dividir</Text></TouchableOpacity>
         <Text>Resultado: {result}</Text>
+        <TouchableOpacity style={styles.btn} onPress={reset}><Text>Reiniciar</Text></TouchableOpacity>
       </View>
     </View>
   );
